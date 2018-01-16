@@ -39,33 +39,33 @@
 <p>In <a href="https://bootsha.net/category/tip-tricks.html">Tip & Tricks</a>.</p>
 
 </footer><!-- /.post-info -->      <h2>Here is the syntax to download images from OpenStack glance</h2>
-<div class="highlight"><pre><span></span><span class="n">source</span> <span class="n">overcloudrc</span>
-<span class="n">openstack</span> <span class="n">image</span> <span class="n">save</span> <span class="o">--</span><span class="nb">file</span> <span class="n">local</span><span class="o">-</span><span class="nb">file</span><span class="o">-</span><span class="n">name</span><span class="o">.</span><span class="n">qcow2</span> <span class="n">image</span><span class="o">-</span><span class="n">name</span>
+<div class="highlight"><pre><span></span><span class="nb">source</span> overcloudrc
+openstack image save --file local-file-name.qcow2 image-name
 </pre></div>
 
 
 <h2>Or if you would like to compress the downloaded image on the fly</h2>
-<div class="highlight"><pre><span></span>source overcloudrc
-openstack image save image-name | gzip -c &gt; local-file-name.raw.gz
+<div class="highlight"><pre><span></span><span class="nb">source</span> overcloudrc
+openstack image save image-name <span class="p">|</span> gzip -c &gt; local-file-name.raw.gz
 </pre></div>
 
 
 <h2>Example</h2>
-<div class="highlight"><pre><span></span>[stack@ospdir ~]$ source overcloudrc
-(admin@overcloud) [stack@ospdir ~]$ openstack image list -c ID -c Name -c &quot;Disk Format&quot; -c Size -f table --long
+<div class="highlight"><pre><span></span><span class="o">[</span>stack@ospdir ~<span class="o">]</span>$ <span class="nb">source</span> overcloudrc
+<span class="o">(</span>admin@overcloud<span class="o">)</span> <span class="o">[</span>stack@ospdir ~<span class="o">]</span>$ openstack image list -c ID -c Name -c <span class="s2">&quot;Disk Format&quot;</span> -c Size -f table --long
 +--------------------------------------+----------+-------------+-------------+
-| ID                                   | Name     | Disk Format |        Size |
+<span class="p">|</span> ID                                   <span class="p">|</span> Name     <span class="p">|</span> Disk Format <span class="p">|</span>        Size <span class="p">|</span>
 +--------------------------------------+----------+-------------+-------------+
-| 6c5384f6-cf86-4a41-b9d4-8cafbb9c08fc | CentOS74 | qcow2       |   854851584 |
-| 4d43fb6d-16a3-4c85-8eab-f0088a9f5aaa | Win2k16  | raw         | 42954915840 |
-| 3bcdeb04-9170-4f2c-8468-8797477b6c02 | cirros   | qcow2       |    13267968 |
+<span class="p">|</span> 6c5384f6-cf86-4a41-b9d4-8cafbb9c08fc <span class="p">|</span> CentOS74 <span class="p">|</span> qcow2       <span class="p">|</span>   <span class="m">854851584</span> <span class="p">|</span>
+<span class="p">|</span> 4d43fb6d-16a3-4c85-8eab-f0088a9f5aaa <span class="p">|</span> Win2k16  <span class="p">|</span> raw         <span class="p">|</span> <span class="m">42954915840</span> <span class="p">|</span>
+<span class="p">|</span> 3bcdeb04-9170-4f2c-8468-8797477b6c02 <span class="p">|</span> cirros   <span class="p">|</span> qcow2       <span class="p">|</span>    <span class="m">13267968</span> <span class="p">|</span>
 +--------------------------------------+----------+-------------+-------------+
-(admin@overcloud) [stack@ospdir ~]$ openstack image save Win2K16 | gzip -c &gt; Win2K16.raw.gz
-(admin@overcloud) [stack@ospdir ~]$ du -b Win2k16.raw.gz
-9151990788    Win2k16.raw.gz
-(admin@overcloud) [stack@ospdir ~]$ openstack image save --file  cirros.qcow2 cirros
-(admin@overcloud) [stack@ospdir ~]$ du -b cirros.qcow2
-13267968    Win2k16.raw.gz
+<span class="o">(</span>admin@overcloud<span class="o">)</span> <span class="o">[</span>stack@ospdir ~<span class="o">]</span>$ openstack image save Win2K16 <span class="p">|</span> gzip -c &gt; Win2K16.raw.gz
+<span class="o">(</span>admin@overcloud<span class="o">)</span> <span class="o">[</span>stack@ospdir ~<span class="o">]</span>$ du -b Win2k16.raw.gz
+<span class="m">9151990788</span>    Win2k16.raw.gz
+<span class="o">(</span>admin@overcloud<span class="o">)</span> <span class="o">[</span>stack@ospdir ~<span class="o">]</span>$ openstack image save --file  cirros.qcow2 cirros
+<span class="o">(</span>admin@overcloud<span class="o">)</span> <span class="o">[</span>stack@ospdir ~<span class="o">]</span>$ du -b cirros.qcow2
+<span class="m">13267968</span>    Win2k16.raw.gz
 </pre></div>
     </div><!-- /.entry-content -->
 

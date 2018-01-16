@@ -1,43 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>Bootsha - Tip &amp; Tricks</title><link href="https://bootsha.net/" rel="alternate"></link><link href="https://bootsha.net/feeds/tip-tricks.atom.xml" rel="self"></link><id>https://bootsha.net/</id><updated>2018-01-16T15:33:00+04:00</updated><entry><title>How to download images from OpenStack Glance.</title><link href="https://bootsha.net/how-to-download-images-from-openstack-glance.html" rel="alternate"></link><published>2018-01-16T15:33:00+04:00</published><updated>2018-01-16T15:33:00+04:00</updated><author><name>MS</name></author><id>tag:bootsha.net,2018-01-16:/how-to-download-images-from-openstack-glance.html</id><summary type="html">&lt;h2&gt;Here is the syntax to download images from OpenStack glance&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt; &lt;span class="n"&gt;overcloudrc&lt;/span&gt;
-&lt;span class="n"&gt;openstack&lt;/span&gt; &lt;span class="n"&gt;image&lt;/span&gt; &lt;span class="n"&gt;save&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nb"&gt;file&lt;/span&gt; &lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nb"&gt;file&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;qcow2&lt;/span&gt; &lt;span class="n"&gt;image&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;source&lt;/span&gt; overcloudrc
+openstack image save --file local-file-name.qcow2 image-name
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h2&gt;Or if you would like to compress the downloaded image on the fly&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;source overcloudrc
-openstack image save image-name | gzip -c &amp;gt; local-file-name.raw.gz
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;source&lt;/span&gt; overcloudrc
+openstack image save image-name &lt;span class="p"&gt;|&lt;/span&gt; gzip -c &amp;gt; local-file-name.raw.gz
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h2&gt;Example&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[stack@ospdir ~]$ source …&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;h2&gt;Here is the syntax to download images from OpenStack glance&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt; &lt;span class="n"&gt;overcloudrc&lt;/span&gt;
-&lt;span class="n"&gt;openstack&lt;/span&gt; &lt;span class="n"&gt;image&lt;/span&gt; &lt;span class="n"&gt;save&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nb"&gt;file&lt;/span&gt; &lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nb"&gt;file&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;qcow2&lt;/span&gt; &lt;span class="n"&gt;image&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;stack@ospdir ~&lt;span class="o"&gt;]&lt;/span&gt;$ &lt;span class="nb"&gt;source&lt;/span&gt; overcloudrc
+&lt;span class="o"&gt;(&lt;/span&gt;admin@overcloud …&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;h2&gt;Here is the syntax to download images from OpenStack glance&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;source&lt;/span&gt; overcloudrc
+openstack image save --file local-file-name.qcow2 image-name
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h2&gt;Or if you would like to compress the downloaded image on the fly&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;source overcloudrc
-openstack image save image-name | gzip -c &amp;gt; local-file-name.raw.gz
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;source&lt;/span&gt; overcloudrc
+openstack image save image-name &lt;span class="p"&gt;|&lt;/span&gt; gzip -c &amp;gt; local-file-name.raw.gz
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h2&gt;Example&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[stack@ospdir ~]$ source overcloudrc
-(admin@overcloud) [stack@ospdir ~]$ openstack image list -c ID -c Name -c &amp;quot;Disk Format&amp;quot; -c Size -f table --long
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;stack@ospdir ~&lt;span class="o"&gt;]&lt;/span&gt;$ &lt;span class="nb"&gt;source&lt;/span&gt; overcloudrc
+&lt;span class="o"&gt;(&lt;/span&gt;admin@overcloud&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;stack@ospdir ~&lt;span class="o"&gt;]&lt;/span&gt;$ openstack image list -c ID -c Name -c &lt;span class="s2"&gt;&amp;quot;Disk Format&amp;quot;&lt;/span&gt; -c Size -f table --long
 +--------------------------------------+----------+-------------+-------------+
-| ID                                   | Name     | Disk Format |        Size |
+&lt;span class="p"&gt;|&lt;/span&gt; ID                                   &lt;span class="p"&gt;|&lt;/span&gt; Name     &lt;span class="p"&gt;|&lt;/span&gt; Disk Format &lt;span class="p"&gt;|&lt;/span&gt;        Size &lt;span class="p"&gt;|&lt;/span&gt;
 +--------------------------------------+----------+-------------+-------------+
-| 6c5384f6-cf86-4a41-b9d4-8cafbb9c08fc | CentOS74 | qcow2       |   854851584 |
-| 4d43fb6d-16a3-4c85-8eab-f0088a9f5aaa | Win2k16  | raw         | 42954915840 |
-| 3bcdeb04-9170-4f2c-8468-8797477b6c02 | cirros   | qcow2       |    13267968 |
+&lt;span class="p"&gt;|&lt;/span&gt; 6c5384f6-cf86-4a41-b9d4-8cafbb9c08fc &lt;span class="p"&gt;|&lt;/span&gt; CentOS74 &lt;span class="p"&gt;|&lt;/span&gt; qcow2       &lt;span class="p"&gt;|&lt;/span&gt;   &lt;span class="m"&gt;854851584&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt;
+&lt;span class="p"&gt;|&lt;/span&gt; 4d43fb6d-16a3-4c85-8eab-f0088a9f5aaa &lt;span class="p"&gt;|&lt;/span&gt; Win2k16  &lt;span class="p"&gt;|&lt;/span&gt; raw         &lt;span class="p"&gt;|&lt;/span&gt; &lt;span class="m"&gt;42954915840&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt;
+&lt;span class="p"&gt;|&lt;/span&gt; 3bcdeb04-9170-4f2c-8468-8797477b6c02 &lt;span class="p"&gt;|&lt;/span&gt; cirros   &lt;span class="p"&gt;|&lt;/span&gt; qcow2       &lt;span class="p"&gt;|&lt;/span&gt;    &lt;span class="m"&gt;13267968&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt;
 +--------------------------------------+----------+-------------+-------------+
-(admin@overcloud) [stack@ospdir ~]$ openstack image save Win2K16 | gzip -c &amp;gt; Win2K16.raw.gz
-(admin@overcloud) [stack@ospdir ~]$ du -b Win2k16.raw.gz
-9151990788    Win2k16.raw.gz
-(admin@overcloud) [stack@ospdir ~]$ openstack image save --file  cirros.qcow2 cirros
-(admin@overcloud) [stack@ospdir ~]$ du -b cirros.qcow2
-13267968    Win2k16.raw.gz
+&lt;span class="o"&gt;(&lt;/span&gt;admin@overcloud&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;stack@ospdir ~&lt;span class="o"&gt;]&lt;/span&gt;$ openstack image save Win2K16 &lt;span class="p"&gt;|&lt;/span&gt; gzip -c &amp;gt; Win2K16.raw.gz
+&lt;span class="o"&gt;(&lt;/span&gt;admin@overcloud&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;stack@ospdir ~&lt;span class="o"&gt;]&lt;/span&gt;$ du -b Win2k16.raw.gz
+&lt;span class="m"&gt;9151990788&lt;/span&gt;    Win2k16.raw.gz
+&lt;span class="o"&gt;(&lt;/span&gt;admin@overcloud&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;stack@ospdir ~&lt;span class="o"&gt;]&lt;/span&gt;$ openstack image save --file  cirros.qcow2 cirros
+&lt;span class="o"&gt;(&lt;/span&gt;admin@overcloud&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;stack@ospdir ~&lt;span class="o"&gt;]&lt;/span&gt;$ du -b cirros.qcow2
+&lt;span class="m"&gt;13267968&lt;/span&gt;    Win2k16.raw.gz
 &lt;/pre&gt;&lt;/div&gt;</content></entry></feed>
