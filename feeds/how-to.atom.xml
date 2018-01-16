@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Bootsha - How To</title><link href="http://linusali.github.io/" rel="alternate"></link><link href="http://linusali.github.io/feeds/how-to.atom.xml" rel="self"></link><id>http://linusali.github.io/</id><updated>2018-01-16T15:33:00+04:00</updated><entry><title>How to download images from OpenStack Glance.</title><link href="http://linusali.github.io/how-to-download-images-from-openstack-glance.html" rel="alternate"></link><published>2018-01-16T15:33:00+04:00</published><updated>2018-01-16T15:33:00+04:00</updated><author><name>MS</name></author><id>tag:linusali.github.io,2018-01-16:/how-to-download-images-from-openstack-glance.html</id><summary type="html">&lt;h2&gt;Here is the syntax to download images from OpenStack glance&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;source overcloudrc
+openstack image save --file local-file-name.qcow2 image-name
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Or if you would like to compress the downloaded image on the fly&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;source overcloudrc
+openstack image save image-name | gzip -c &amp;gt; local-file-name.raw.gz
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Example&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[stack@ospdir ~]$ source overcloudrc
+(admin@overcloud …&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;h2&gt;Here is the syntax to download images from OpenStack glance&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;source overcloudrc
+openstack image save --file local-file-name.qcow2 image-name
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Or if you would like to compress the downloaded image on the fly&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;source overcloudrc
+openstack image save image-name | gzip -c &amp;gt; local-file-name.raw.gz
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Example&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[stack@ospdir ~]$ source overcloudrc
+(admin@overcloud) [stack@ospdir ~]$ openstack image list -c ID -c Name -c &amp;quot;Disk Format&amp;quot; -c Size -f table --long
++--------------------------------------+----------+-------------+-------------+
+| ID                                   | Name     | Disk Format |        Size |
++--------------------------------------+----------+-------------+-------------+
+| 6c5384f6-cf86-4a41-b9d4-8cafbb9c08fc | CentOS74 | qcow2       |   854851584 |
+| 4d43fb6d-16a3-4c85-8eab-f0088a9f5aaa | Win2k16  | raw         | 42954915840 |
+| 3bcdeb04-9170-4f2c-8468-8797477b6c02 | cirros   | qcow2       |    13267968 |
++--------------------------------------+----------+-------------+-------------+
+(admin@overcloud) [stack@ospdir ~]$ openstack image save Win2K16 | gzip -c &amp;gt; Win2K16.raw.gz
+(admin@overcloud) [stack@ospdir ~]$ du -b Win2k16.raw.gz
+9151990788    Win2k16.raw.gz
+(admin@overcloud) [stack@ospdir ~]$ openstack image save --file  cirros.qcow2 cirros
+(admin@overcloud) [stack@ospdir ~]$ du -b cirros.qcow2
+13267968    Win2k16.raw.gz
+&lt;/pre&gt;&lt;/div&gt;</content></entry></feed>

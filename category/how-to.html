@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>Bootsha - How To</title>
+        <link rel="stylesheet" href="http://linusali.github.io/theme/css/main.css" />
+        <link href="http://linusali.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Bootsha Atom Feed" />
+
+        <!--[if IE]>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://linusali.github.io/">Bootsha </a></h1>
+                <nav><ul>
+                    <li class="active"><a href="http://linusali.github.io/category/how-to.html">How To</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="http://linusali.github.io/how-to-download-images-from-openstack-glance.html">How to download images from OpenStack Glance.</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2018-01-16T15:33:00+04:00">
+                Published: Tue 16 January 2018
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://linusali.github.io/author/ms.html">MS</a>
+        </address>
+<p>In <a href="http://linusali.github.io/category/how-to.html">How To</a>.</p>
+
+</footer><!-- /.post-info --><h2>Here is the syntax to download images from OpenStack glance</h2>
+<div class="highlight"><pre><span></span>source overcloudrc
+openstack image save --file local-file-name.qcow2 image-name
+</pre></div>
+
+
+<h2>Or if you would like to compress the downloaded image on the fly</h2>
+<div class="highlight"><pre><span></span>source overcloudrc
+openstack image save image-name | gzip -c &gt; local-file-name.raw.gz
+</pre></div>
+
+
+<h2>Example</h2>
+<div class="highlight"><pre><span></span>[stack@ospdir ~]$ source overcloudrc
+(admin@overcloud) [stack@ospdir ~]$ openstack image list -c ID -c Name -c &quot;Disk Format&quot; -c Size -f table --long
++--------------------------------------+----------+-------------+-------------+
+| ID                                   | Name     | Disk Format |        Size |
++--------------------------------------+----------+-------------+-------------+
+| 6c5384f6-cf86-4a41-b9d4-8cafbb9c08fc | CentOS74 | qcow2       |   854851584 |
+| 4d43fb6d-16a3-4c85-8eab-f0088a9f5aaa | Win2k16  | raw         | 42954915840 |
+| 3bcdeb04-9170-4f2c-8468-8797477b6c02 | cirros   | qcow2       |    13267968 |
++--------------------------------------+----------+-------------+-------------+
+(admin@overcloud) [stack@ospdir ~]$ openstack image save Win2K16 | gzip -c &gt; Win2K16.raw.gz
+(admin@overcloud) [stack@ospdir ~]$ du -b Win2k16.raw.gz
+9151990788    Win2k16.raw.gz
+(admin@overcloud) [stack@ospdir ~]$ openstack image save --file  cirros.qcow2 cirros
+(admin@overcloud) [stack@ospdir ~]$ du -b cirros.qcow2
+13267968    Win2k16.raw.gz
+</pre></div>                </article>
+            </aside><!-- /#featured -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://linusali.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
