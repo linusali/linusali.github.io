@@ -1,5 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Bootsha - Tip &amp; Tricks</title><link href="https://bootsha.net/" rel="alternate"></link><link href="https://bootsha.net/feeds/tip-tricks.atom.xml" rel="self"></link><id>https://bootsha.net/</id><updated>2018-01-16T15:33:00+04:00</updated><entry><title>How to download images from OpenStack Glance.</title><link href="https://bootsha.net/how-to-download-images-from-openstack-glance.html" rel="alternate"></link><published>2018-01-16T15:33:00+04:00</published><updated>2018-01-16T15:33:00+04:00</updated><author><name>MS</name></author><id>tag:bootsha.net,2018-01-16:/how-to-download-images-from-openstack-glance.html</id><summary type="html">&lt;h2&gt;Here is the syntax to download images from OpenStack glance&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Bootsha - Tip &amp; Tricks</title><link href="https://bootsha.net/" rel="alternate"></link><link href="https://bootsha.net/feeds/tip-tricks.atom.xml" rel="self"></link><id>https://bootsha.net/</id><updated>2018-01-17T17:13:00+04:00</updated><entry><title>Recover from Pacemaker resource management disabled .</title><link href="https://bootsha.net/recover-from-pacemaker-resource-management-disabled.html" rel="alternate"></link><published>2018-01-17T17:13:00+04:00</published><updated>2018-01-17T17:13:00+04:00</updated><author><name>MS</name></author><id>tag:bootsha.net,2018-01-17:/recover-from-pacemaker-resource-management-disabled.html</id><summary type="html">&lt;h2&gt;The error message&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;         *** Resource management is DISABLED ***
+The cluster will not attempt to start, stop or recover services
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Get cluster out of maintenance mode&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pcs property &lt;span class="nb"&gt;unset&lt;/span&gt; maintenance-mode
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;To start the pacemaker cluster&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pcs cluster start --all
+&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;h2&gt;The error message&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;         *** Resource management is DISABLED ***
+The cluster will not attempt to start, stop or recover services
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Get cluster out of maintenance mode&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pcs property &lt;span class="nb"&gt;unset&lt;/span&gt; maintenance-mode
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;To start the pacemaker cluster&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pcs cluster start --all
+&lt;/pre&gt;&lt;/div&gt;</content></entry><entry><title>How to download images from OpenStack Glance.</title><link href="https://bootsha.net/how-to-download-images-from-openstack-glance.html" rel="alternate"></link><published>2018-01-16T15:33:00+04:00</published><updated>2018-01-16T15:33:00+04:00</updated><author><name>MS</name></author><id>tag:bootsha.net,2018-01-16:/how-to-download-images-from-openstack-glance.html</id><summary type="html">&lt;h2&gt;Here is the syntax to download images from OpenStack glance&lt;/h2&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;source&lt;/span&gt; overcloudrc
 openstack image save --file local-file-name.qcow2 image-name
 &lt;/pre&gt;&lt;/div&gt;

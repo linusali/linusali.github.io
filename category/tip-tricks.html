@@ -22,7 +22,44 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="https://bootsha.net/how-to-download-images-from-openstack-glance.html">How to download images from OpenStack Glance.</a></h1>
+                    <h1 class="entry-title"><a href="https://bootsha.net/recover-from-pacemaker-resource-management-disabled.html">Recover from Pacemaker resource management disabled .</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2018-01-17T17:13:00+04:00">
+                Published: Wed 17 January 2018
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="https://bootsha.net/author/ms.html">MS</a>
+        </address>
+<p>In <a href="https://bootsha.net/category/tip-tricks.html">Tip & Tricks</a>.</p>
+
+</footer><!-- /.post-info --><h2>The error message</h2>
+<div class="highlight"><pre><span></span>         *** Resource management is DISABLED ***
+The cluster will not attempt to start, stop or recover services
+</pre></div>
+
+
+<h2>Get cluster out of maintenance mode</h2>
+<div class="highlight"><pre><span></span>pcs property <span class="nb">unset</span> maintenance-mode
+</pre></div>
+
+
+<h2>To start the pacemaker cluster</h2>
+<div class="highlight"><pre><span></span>pcs cluster start --all
+</pre></div>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://bootsha.net/how-to-download-images-from-openstack-glance.html" rel="bookmark"
+                           title="Permalink to How to download images from OpenStack Glance.">How to download images from OpenStack Glance.</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2018-01-16T15:33:00+04:00">
                 Published: Tue 16 January 2018
@@ -33,7 +70,7 @@
         </address>
 <p>In <a href="https://bootsha.net/category/tip-tricks.html">Tip & Tricks</a>.</p>
 
-</footer><!-- /.post-info --><h2>Here is the syntax to download images from OpenStack glance</h2>
+</footer><!-- /.post-info -->                <h2>Here is the syntax to download images from OpenStack glance</h2>
 <div class="highlight"><pre><span></span><span class="nb">source</span> overcloudrc
 openstack image save --file local-file-name.qcow2 image-name
 </pre></div>
@@ -47,22 +84,12 @@ openstack image save image-name <span class="p">|</span> gzip -c &gt; local-file
 
 <h2>Example</h2>
 <div class="highlight"><pre><span></span><span class="o">[</span>stack@ospdir ~<span class="o">]</span>$ <span class="nb">source</span> overcloudrc
-<span class="o">(</span>admin@overcloud<span class="o">)</span> <span class="o">[</span>stack@ospdir ~<span class="o">]</span>$ openstack image list -c ID -c Name -c <span class="s2">&quot;Disk Format&quot;</span> -c Size -f table --long
-+--------------------------------------+----------+-------------+-------------+
-<span class="p">|</span> ID                                   <span class="p">|</span> Name     <span class="p">|</span> Disk Format <span class="p">|</span>        Size <span class="p">|</span>
-+--------------------------------------+----------+-------------+-------------+
-<span class="p">|</span> 6c5384f6-cf86-4a41-b9d4-8cafbb9c08fc <span class="p">|</span> CentOS74 <span class="p">|</span> qcow2       <span class="p">|</span>   <span class="m">854851584</span> <span class="p">|</span>
-<span class="p">|</span> 4d43fb6d-16a3-4c85-8eab-f0088a9f5aaa <span class="p">|</span> Win2k16  <span class="p">|</span> raw         <span class="p">|</span> <span class="m">42954915840</span> <span class="p">|</span>
-<span class="p">|</span> 3bcdeb04-9170-4f2c-8468-8797477b6c02 <span class="p">|</span> cirros   <span class="p">|</span> qcow2       <span class="p">|</span>    <span class="m">13267968</span> <span class="p">|</span>
-+--------------------------------------+----------+-------------+-------------+
-<span class="o">(</span>admin@overcloud<span class="o">)</span> <span class="o">[</span>stack@ospdir ~<span class="o">]</span>$ openstack image save Win2K16 <span class="p">|</span> gzip -c &gt; Win2K16.raw.gz
-<span class="o">(</span>admin@overcloud<span class="o">)</span> <span class="o">[</span>stack@ospdir ~<span class="o">]</span>$ du -b Win2k16.raw.gz
-<span class="m">9151990788</span>    Win2k16.raw.gz
-<span class="o">(</span>admin@overcloud<span class="o">)</span> <span class="o">[</span>stack@ospdir ~<span class="o">]</span>$ openstack image save --file  cirros.qcow2 cirros
-<span class="o">(</span>admin@overcloud<span class="o">)</span> <span class="o">[</span>stack@ospdir ~<span class="o">]</span>$ du -b cirros.qcow2
-<span class="m">13267968</span>    Win2k16.raw.gz
-</pre></div>                </article>
-            </aside><!-- /#featured -->
+<span class="o">(</span>admin@overcloud …</pre></div>
+                <a class="readmore" href="https://bootsha.net/how-to-download-images-from-openstack-glance.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+                </ol><!-- /#posts-list -->
+                </section><!-- /#content -->
         <section id="extras" class="body">
                 <div class="blogroll">
                         <h2>links</h2>
