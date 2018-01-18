@@ -22,7 +22,41 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="https://bootsha.net/usefull-utility-to-control-bandwidth.html">Usefull utility to Control bandwidth</a></h1>
+                    <h1 class="entry-title"><a href="https://bootsha.net/egrep-regex-for-filtering-mac.html">egrep Regex for filtering mac</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2018-01-18T21:31:00+04:00">
+                Published: Thu 18 January 2018
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="https://bootsha.net/author/ms.html">MS</a>
+        </address>
+<p>In <a href="https://bootsha.net/category/tip-tricks.html">Tip & Tricks</a>.</p>
+
+</footer><!-- /.post-info --><h2>egrep Regex</h2>
+<div class="highlight"><pre><span></span><span class="s1">&#39;([0-9a-f]{2}:){5}[0-9a-f]{2}&#39;</span>
+</pre></div>
+
+
+<h2>Example</h2>
+<div class="highlight"><pre><span></span><span class="k">for</span> i in <span class="k">$(</span>virsh list <span class="p">|</span>grep -v Name<span class="p">|</span>awk <span class="s1">&#39;{print $2}&#39;</span> <span class="k">)</span> <span class="p">;</span> <span class="k">do</span> 
+   <span class="nb">echo</span> -e <span class="nv">$i</span> 
+   virsh domiflist <span class="nv">$i</span>
+<span class="k">done</span> <span class="p">|</span> egrep <span class="s1">&#39;([0-9a-f]{2}:){5}[0-9a-f]{2}&#39;</span> <span class="p">|</span> awk <span class="s1">&#39;{print $NF}&#39;</span>
+</pre></div>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://bootsha.net/usefull-utility-to-control-bandwidth.html" rel="bookmark"
+                           title="Permalink to Usefull utility to Control bandwidth">Usefull utility to Control bandwidth</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2018-01-18T00:00:00+04:00">
                 Published: Thu 18 January 2018
@@ -33,7 +67,7 @@
         </address>
 <p>In <a href="https://bootsha.net/category/tip-tricks.html">Tip & Tricks</a>.</p>
 
-</footer><!-- /.post-info --><h2>Useful utility to control bandwidth.</h2>
+</footer><!-- /.post-info -->                <h2>Useful utility to control bandwidth.</h2>
 <p><code>tc</code> is a useful utility to control bandwidth and to simulate long distance links 
 Here is the man page <a href="https://linux.die.net/man/8/tc">https://linux.die.net/man/8/tc</a></p>
 <h2>Example</h2>
@@ -42,12 +76,10 @@ Here is the man page <a href="https://linux.die.net/man/8/tc">https://linux.die.
 </pre></div>
 
 
-<p>For a 100ms delay for every packet traversing eth0. You may use a Linux 'gateway' node to simulate two DC.</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+<p>For …</p>
+                <a class="readmore" href="https://bootsha.net/usefull-utility-to-control-bandwidth.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>

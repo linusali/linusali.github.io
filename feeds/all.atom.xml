@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Bootsha</title><link href="https://bootsha.net/" rel="alternate"></link><link href="https://bootsha.net/feeds/all.atom.xml" rel="self"></link><id>https://bootsha.net/</id><updated>2018-01-18T00:00:00+04:00</updated><entry><title>Usefull utility to Control bandwidth</title><link href="https://bootsha.net/usefull-utility-to-control-bandwidth.html" rel="alternate"></link><published>2018-01-18T00:00:00+04:00</published><updated>2018-01-18T00:00:00+04:00</updated><author><name>MS</name></author><id>tag:bootsha.net,2018-01-18:/usefull-utility-to-control-bandwidth.html</id><summary type="html">&lt;h2&gt;Useful utility to control bandwidth.&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Bootsha</title><link href="https://bootsha.net/" rel="alternate"></link><link href="https://bootsha.net/feeds/all.atom.xml" rel="self"></link><id>https://bootsha.net/</id><updated>2018-01-18T21:31:00+04:00</updated><entry><title>egrep Regex for filtering mac</title><link href="https://bootsha.net/egrep-regex-for-filtering-mac.html" rel="alternate"></link><published>2018-01-18T21:31:00+04:00</published><updated>2018-01-18T21:31:00+04:00</updated><author><name>MS</name></author><id>tag:bootsha.net,2018-01-18:/egrep-regex-for-filtering-mac.html</id><summary type="html">&lt;h2&gt;egrep Regex&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;([0-9a-f]{2}:){5}[0-9a-f]{2}&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Example&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt; i in &lt;span class="k"&gt;$(&lt;/span&gt;virsh list &lt;span class="p"&gt;|&lt;/span&gt;grep -v Name&lt;span class="p"&gt;|&lt;/span&gt;awk &lt;span class="s1"&gt;&amp;#39;{print $2}&amp;#39;&lt;/span&gt; &lt;span class="k"&gt;)&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; 
+   &lt;span class="nb"&gt;echo&lt;/span&gt; -e &lt;span class="nv"&gt;$i&lt;/span&gt; 
+   virsh domiflist &lt;span class="nv"&gt;$i&lt;/span&gt;
+&lt;span class="k"&gt;done&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; egrep &lt;span class="s1"&gt;&amp;#39;([0-9a-f]{2}:){5}[0-9a-f]{2}&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; awk &lt;span class="s1"&gt;&amp;#39;{print $NF}&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;h2&gt;egrep Regex&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;([0-9a-f]{2}:){5}[0-9a-f]{2}&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Example&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt; i in &lt;span class="k"&gt;$(&lt;/span&gt;virsh list &lt;span class="p"&gt;|&lt;/span&gt;grep -v Name&lt;span class="p"&gt;|&lt;/span&gt;awk &lt;span class="s1"&gt;&amp;#39;{print $2}&amp;#39;&lt;/span&gt; &lt;span class="k"&gt;)&lt;/span&gt; &lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; 
+   &lt;span class="nb"&gt;echo&lt;/span&gt; -e &lt;span class="nv"&gt;$i&lt;/span&gt; 
+   virsh domiflist &lt;span class="nv"&gt;$i&lt;/span&gt;
+&lt;span class="k"&gt;done&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; egrep &lt;span class="s1"&gt;&amp;#39;([0-9a-f]{2}:){5}[0-9a-f]{2}&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; awk &lt;span class="s1"&gt;&amp;#39;{print $NF}&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</content></entry><entry><title>Usefull utility to Control bandwidth</title><link href="https://bootsha.net/usefull-utility-to-control-bandwidth.html" rel="alternate"></link><published>2018-01-18T00:00:00+04:00</published><updated>2018-01-18T00:00:00+04:00</updated><author><name>MS</name></author><id>tag:bootsha.net,2018-01-18:/usefull-utility-to-control-bandwidth.html</id><summary type="html">&lt;h2&gt;Useful utility to control bandwidth.&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;tc&lt;/code&gt; is a useful utility to control bandwidth and to simulate long distance links 
 Here is the man page &lt;a href="https://linux.die.net/man/8/tc"&gt;https://linux.die.net/man/8/tc&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;Example&lt;/h2&gt;
