@@ -22,7 +22,40 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="https://bootsha.net/recover-from-pacemaker-resource-management-disabled.html">Recover from Pacemaker resource management disabled .</a></h1>
+                    <h1 class="entry-title"><a href="https://bootsha.net/usefull-utility-to-control-bandwidth.html">Usefull utility to Control bandwidth</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2018-12-18T00:00:00+04:00">
+                Published: Tue 18 December 2018
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="https://bootsha.net/author/ms.html">MS</a>
+        </address>
+<p>In <a href="https://bootsha.net/category/tip-tricks.html">Tip & Tricks</a>.</p>
+
+</footer><!-- /.post-info --><h2>Useful utility to control bandwidth.</h2>
+<p><code>tc</code> is a useful utility to control bandwidth and to simulate long distance links 
+Here is the man page <a href="https://linux.die.net/man/8/tc">https://linux.die.net/man/8/tc</a></p>
+<h2>Example</h2>
+<p>Thanks to Taco (my collegue) for the tip</p>
+<div class="highlight"><pre><span></span>tc qdisc add dev eth0 root netem delay 100ms
+</pre></div>
+
+
+<p>For a 100ms delay for every packet traversing eth0. You may use a Linux 'gateway' node to simulate two DC.</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://bootsha.net/recover-from-pacemaker-resource-management-disabled.html" rel="bookmark"
+                           title="Permalink to Recover from Pacemaker resource management disabled .">Recover from Pacemaker resource management disabled .</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2018-01-17T17:13:00+04:00">
                 Published: Wed 17 January 2018
@@ -33,7 +66,7 @@
         </address>
 <p>In <a href="https://bootsha.net/category/tip-tricks.html">Tip & Tricks</a>.</p>
 
-</footer><!-- /.post-info --><h2>The error message</h2>
+</footer><!-- /.post-info -->                <h2>The error message</h2>
 <div class="highlight"><pre><span></span>         *** Resource management is DISABLED ***
 The cluster will not attempt to start, stop or recover services
 </pre></div>
@@ -50,12 +83,10 @@ The cluster will not attempt to start, stop or recover services
 
 
 <h2>Referrence and Thanks</h2>
-<p><a href="https://www.cloudatoz.com/openstack-resource-management-is-disabled/">https://www.cloudatoz.com/openstack-resource-management-is-disabled/</a></p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+<p><a href="https://www.cloudatoz.com/openstack-resource-management-is-disabled/">https://www.cloudatoz.com/openstack-resource-management-is-disabled/</a></p>
+                <a class="readmore" href="https://bootsha.net/recover-from-pacemaker-resource-management-disabled.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>

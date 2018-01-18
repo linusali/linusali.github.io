@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Bootsha - Tip &amp; Tricks</title><link href="https://bootsha.net/" rel="alternate"></link><link href="https://bootsha.net/feeds/tip-tricks.atom.xml" rel="self"></link><id>https://bootsha.net/</id><updated>2018-01-17T17:13:00+04:00</updated><entry><title>Recover from Pacemaker resource management disabled .</title><link href="https://bootsha.net/recover-from-pacemaker-resource-management-disabled.html" rel="alternate"></link><published>2018-01-17T17:13:00+04:00</published><updated>2018-01-17T17:13:00+04:00</updated><author><name>MS</name></author><id>tag:bootsha.net,2018-01-17:/recover-from-pacemaker-resource-management-disabled.html</id><summary type="html">&lt;h2&gt;The error message&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Bootsha - Tip &amp; Tricks</title><link href="https://bootsha.net/" rel="alternate"></link><link href="https://bootsha.net/feeds/tip-tricks.atom.xml" rel="self"></link><id>https://bootsha.net/</id><updated>2018-12-18T00:00:00+04:00</updated><entry><title>Usefull utility to Control bandwidth</title><link href="https://bootsha.net/usefull-utility-to-control-bandwidth.html" rel="alternate"></link><published>2018-12-18T00:00:00+04:00</published><updated>2018-12-18T00:00:00+04:00</updated><author><name>MS</name></author><id>tag:bootsha.net,2018-12-18:/usefull-utility-to-control-bandwidth.html</id><summary type="html">&lt;h2&gt;Useful utility to control bandwidth.&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;tc&lt;/code&gt; is a useful utility to control bandwidth and to simulate long distance links 
+Here is the man page &lt;a href="https://linux.die.net/man/8/tc"&gt;https://linux.die.net/man/8/tc&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Example&lt;/h2&gt;
+&lt;p&gt;Thanks to Taco (my collegue) for the tip&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;tc qdisc add dev eth0 root netem delay 100ms
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;For …&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Useful utility to control bandwidth.&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;tc&lt;/code&gt; is a useful utility to control bandwidth and to simulate long distance links 
+Here is the man page &lt;a href="https://linux.die.net/man/8/tc"&gt;https://linux.die.net/man/8/tc&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Example&lt;/h2&gt;
+&lt;p&gt;Thanks to Taco (my collegue) for the tip&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;tc qdisc add dev eth0 root netem delay 100ms
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;For a 100ms delay for every packet traversing eth0. You may use a Linux 'gateway' node to simulate two DC.&lt;/p&gt;</content></entry><entry><title>Recover from Pacemaker resource management disabled .</title><link href="https://bootsha.net/recover-from-pacemaker-resource-management-disabled.html" rel="alternate"></link><published>2018-01-17T17:13:00+04:00</published><updated>2018-01-17T17:13:00+04:00</updated><author><name>MS</name></author><id>tag:bootsha.net,2018-01-17:/recover-from-pacemaker-resource-management-disabled.html</id><summary type="html">&lt;h2&gt;The error message&lt;/h2&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;         *** Resource management is DISABLED ***
 The cluster will not attempt to start, stop or recover services
 &lt;/pre&gt;&lt;/div&gt;
