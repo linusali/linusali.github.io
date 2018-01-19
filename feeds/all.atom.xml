@@ -1,5 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Bootsha</title><link href="https://bootsha.net/" rel="alternate"></link><link href="https://bootsha.net/feeds/all.atom.xml" rel="self"></link><id>https://bootsha.net/</id><updated>2018-01-18T21:31:00+04:00</updated><entry><title>egrep Regex for filtering mac</title><link href="https://bootsha.net/egrep-regex-for-filtering-mac.html" rel="alternate"></link><published>2018-01-18T21:31:00+04:00</published><updated>2018-01-18T21:31:00+04:00</updated><author><name>MS</name></author><id>tag:bootsha.net,2018-01-18:/egrep-regex-for-filtering-mac.html</id><summary type="html">&lt;h2&gt;egrep Regex&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Bootsha</title><link href="https://bootsha.net/" rel="alternate"></link><link href="https://bootsha.net/feeds/all.atom.xml" rel="self"></link><id>https://bootsha.net/</id><updated>2018-01-19T21:31:00+04:00</updated><entry><title>A simple bash script bot to send status message to telegram.</title><link href="https://bootsha.net/a-simple-bash-script-bot-to-send-status-message-to-telegram.html" rel="alternate"></link><published>2018-01-19T21:31:00+04:00</published><updated>2018-01-19T21:31:00+04:00</updated><author><name>MS</name></author><id>tag:bootsha.net,2018-01-19:/a-simple-bash-script-bot-to-send-status-message-to-telegram.html</id><summary type="html">&lt;h2&gt;The telegram bot script&lt;/h2&gt;
+&lt;p&gt;Here is a simple telegram bot script I have used to send out OpenStack deployment status message to my telegram. 
+    :::bash
+    #!/bin/bash&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;token=&amp;quot;bot[telegram-bot-api-token]&amp;quot;
+chat_id= # Send a chat to bot from telegram and hit https://api.telegram.org/bot[telegram-bot-api-token]/getUpdates to see chat_id …&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;h2&gt;The telegram bot script&lt;/h2&gt;
+&lt;p&gt;Here is a simple telegram bot script I have used to send out OpenStack deployment status message to my telegram. 
+    :::bash
+    #!/bin/bash&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;token=&amp;quot;bot[telegram-bot-api-token]&amp;quot;
+chat_id= # Send a chat to bot from telegram and hit https://api.telegram.org/bot[telegram-bot-api-token]/getUpdates to see chat_id
+
+if [ -f ~/.bot-stat]; then
+    source ~/.bot-stat
+else
+  lstatus=&amp;quot;OK&amp;quot;
+  sdate=$(date +%s)
+fi
+
+send_message(){
+    tmpfile=$(mktemp /tmp/telebot.XXXXXXX)
+    mstatus=$(echo &lt;span class="nv"&gt;$status&lt;/span&gt;|sed -e &amp;#39;s/_/ /g&amp;#39;)
+    cat &amp;gt; &lt;span class="nv"&gt;$tmpfile&lt;/span&gt; &lt;span class="err"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;EOF&lt;/span&gt;
+&lt;span class="err"&gt;{&amp;quot;chat_id&amp;quot;:&amp;quot;$chat_id&amp;quot;,&lt;/span&gt; &lt;span class="err"&gt;&amp;quot;parse_mode&amp;quot;:&amp;quot;markdown&amp;quot;,&lt;/span&gt; &lt;span class="err"&gt;&amp;quot;text&amp;quot;:&amp;quot;*Deployment*\nStatus:&lt;/span&gt; &lt;span class="err"&gt;*$mstatus*\nTime:&lt;/span&gt; &lt;span class="err"&gt;$date&lt;/span&gt; &lt;span class="err"&gt;\nDuration:&lt;/span&gt; &lt;span class="err"&gt;$duration&amp;quot;}&lt;/span&gt;
+&lt;span class="err"&gt;EOF&lt;/span&gt;
+    &lt;span class="err"&gt;curl&lt;/span&gt; &lt;span class="err"&gt;-k&lt;/span&gt; &lt;span class="err"&gt;--header&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;Content-Type:&lt;/span&gt; &lt;span class="err"&gt;application/json&amp;#39;&lt;/span&gt; &lt;span class="err"&gt;\&lt;/span&gt;
+        &lt;span class="err"&gt;--data-binary&lt;/span&gt; &lt;span class="err"&gt;@${tmpfile}&lt;/span&gt; &lt;span class="err"&gt;\&lt;/span&gt;
+        &lt;span class="err"&gt;--request&lt;/span&gt; &lt;span class="err"&gt;POST&lt;/span&gt; &lt;span class="err"&gt;https://api.telegram.org/$token/sendMessage&lt;/span&gt;
+    &lt;span class="err"&gt;rm&lt;/span&gt; &lt;span class="err"&gt;-f&lt;/span&gt; &lt;span class="err"&gt;$tmpfile&lt;/span&gt;
+&lt;span class="err"&gt;}&lt;/span&gt;
+
+&lt;span class="err"&gt;while&lt;/span&gt; &lt;span class="err"&gt;:&lt;/span&gt; &lt;span class="err"&gt;;&lt;/span&gt; &lt;span class="err"&gt;do&lt;/span&gt;
+    &lt;span class="na"&gt;status=&lt;/span&gt;&lt;span class="s"&gt;$(source&lt;/span&gt; &lt;span class="err"&gt;~/stackrc&lt;/span&gt; &lt;span class="err"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="err"&gt;openstack&lt;/span&gt; &lt;span class="err"&gt;stack&lt;/span&gt; &lt;span class="err"&gt;list&lt;/span&gt; &lt;span class="err"&gt;-c&lt;/span&gt; &lt;span class="err"&gt;&amp;quot;Stack&lt;/span&gt; &lt;span class="err"&gt;Status&amp;quot;&lt;/span&gt; &lt;span class="err"&gt;-f&lt;/span&gt; &lt;span class="err"&gt;value)&lt;/span&gt;
+    &lt;span class="err"&gt;if&lt;/span&gt; &lt;span class="err"&gt;[&lt;/span&gt; &lt;span class="err"&gt;&amp;quot;$status&amp;quot;&lt;/span&gt; &lt;span class="err"&gt;!=&lt;/span&gt; &lt;span class="err"&gt;&amp;quot;$lstatus&amp;quot;&lt;/span&gt; &lt;span class="err"&gt;];&lt;/span&gt; &lt;span class="err"&gt;then&lt;/span&gt;
+       &lt;span class="na"&gt;cdate=&lt;/span&gt;&lt;span class="s"&gt;$(date&lt;/span&gt; &lt;span class="err"&gt;+%s)&lt;/span&gt;
+       &lt;span class="na"&gt;date=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="s"&gt;(date +%D-%H:%M:%S)&amp;quot;&lt;/span&gt;
+       &lt;span class="na"&gt;duration=&lt;/span&gt;&lt;span class="s"&gt;$(($cdate-$sdate))&lt;/span&gt;
+       &lt;span class="err"&gt;send_message&lt;/span&gt;
+       &lt;span class="na"&gt;lstatus=&lt;/span&gt;&lt;span class="s"&gt;$status&lt;/span&gt;
+       &lt;span class="na"&gt;sdate=&lt;/span&gt;&lt;span class="s"&gt;$cdate&lt;/span&gt;
+       &lt;span class="err"&gt;echo&lt;/span&gt; &lt;span class="err"&gt;-e&lt;/span&gt; &lt;span class="err"&gt;&amp;quot;&lt;/span&gt;&lt;span class="na"&gt;lstatus=&lt;/span&gt;&lt;span class="s"&gt;$status\nsdate=$cdate&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;&amp;gt;&lt;/span&gt; ~/.bot-stat
+    fi
+    sleep 5
+done
+&lt;/pre&gt;&lt;/div&gt;</content></entry><entry><title>egrep Regex for filtering mac</title><link href="https://bootsha.net/egrep-regex-for-filtering-mac.html" rel="alternate"></link><published>2018-01-18T21:31:00+04:00</published><updated>2018-01-18T21:31:00+04:00</updated><author><name>MS</name></author><id>tag:bootsha.net,2018-01-18:/egrep-regex-for-filtering-mac.html</id><summary type="html">&lt;h2&gt;egrep Regex&lt;/h2&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;([0-9a-f]{2}:){5}[0-9a-f]{2}&amp;#39;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 

@@ -22,7 +22,70 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="https://bootsha.net/egrep-regex-for-filtering-mac.html">egrep Regex for filtering mac</a></h1>
+                    <h1 class="entry-title"><a href="https://bootsha.net/a-simple-bash-script-bot-to-send-status-message-to-telegram.html">A simple bash script bot to send status message to telegram.</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2018-01-19T21:31:00+04:00">
+                Published: Fri 19 January 2018
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="https://bootsha.net/author/ms.html">MS</a>
+        </address>
+<p>In <a href="https://bootsha.net/category/tip-tricks.html">Tip & Tricks</a>.</p>
+
+</footer><!-- /.post-info --><h2>The telegram bot script</h2>
+<p>Here is a simple telegram bot script I have used to send out OpenStack deployment status message to my telegram. 
+    :::bash
+    #!/bin/bash</p>
+<div class="highlight"><pre><span></span>token=&quot;bot[telegram-bot-api-token]&quot;
+chat_id= # Send a chat to bot from telegram and hit https://api.telegram.org/bot[telegram-bot-api-token]/getUpdates to see chat_id
+
+if [ -f ~/.bot-stat]; then
+    source ~/.bot-stat
+else
+  lstatus=&quot;OK&quot;
+  sdate=$(date +%s)
+fi
+
+send_message(){
+    tmpfile=$(mktemp /tmp/telebot.XXXXXXX)
+    mstatus=$(echo <span class="nv">$status</span>|sed -e &#39;s/_/ /g&#39;)
+    cat &gt; <span class="nv">$tmpfile</span> <span class="err">&lt;</span><span class="nt">&lt;EOF</span>
+<span class="err">{&quot;chat_id&quot;:&quot;$chat_id&quot;,</span> <span class="err">&quot;parse_mode&quot;:&quot;markdown&quot;,</span> <span class="err">&quot;text&quot;:&quot;*Deployment*\nStatus:</span> <span class="err">*$mstatus*\nTime:</span> <span class="err">$date</span> <span class="err">\nDuration:</span> <span class="err">$duration&quot;}</span>
+<span class="err">EOF</span>
+    <span class="err">curl</span> <span class="err">-k</span> <span class="err">--header</span> <span class="err">&#39;Content-Type:</span> <span class="err">application/json&#39;</span> <span class="err">\</span>
+        <span class="err">--data-binary</span> <span class="err">@${tmpfile}</span> <span class="err">\</span>
+        <span class="err">--request</span> <span class="err">POST</span> <span class="err">https://api.telegram.org/$token/sendMessage</span>
+    <span class="err">rm</span> <span class="err">-f</span> <span class="err">$tmpfile</span>
+<span class="err">}</span>
+
+<span class="err">while</span> <span class="err">:</span> <span class="err">;</span> <span class="err">do</span>
+    <span class="na">status=</span><span class="s">$(source</span> <span class="err">~/stackrc</span> <span class="err">&amp;&amp;</span> <span class="err">openstack</span> <span class="err">stack</span> <span class="err">list</span> <span class="err">-c</span> <span class="err">&quot;Stack</span> <span class="err">Status&quot;</span> <span class="err">-f</span> <span class="err">value)</span>
+    <span class="err">if</span> <span class="err">[</span> <span class="err">&quot;$status&quot;</span> <span class="err">!=</span> <span class="err">&quot;$lstatus&quot;</span> <span class="err">];</span> <span class="err">then</span>
+       <span class="na">cdate=</span><span class="s">$(date</span> <span class="err">+%s)</span>
+       <span class="na">date=</span><span class="s">&quot;</span><span class="err">$</span><span class="s">(date +%D-%H:%M:%S)&quot;</span>
+       <span class="na">duration=</span><span class="s">$(($cdate-$sdate))</span>
+       <span class="err">send_message</span>
+       <span class="na">lstatus=</span><span class="s">$status</span>
+       <span class="na">sdate=</span><span class="s">$cdate</span>
+       <span class="err">echo</span> <span class="err">-e</span> <span class="err">&quot;</span><span class="na">lstatus=</span><span class="s">$status\nsdate=$cdate&quot;</span> <span class="nt">&gt;</span> ~/.bot-stat
+    fi
+    sleep 5
+done
+</pre></div>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://bootsha.net/egrep-regex-for-filtering-mac.html" rel="bookmark"
+                           title="Permalink to egrep Regex for filtering mac">egrep Regex for filtering mac</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2018-01-18T21:31:00+04:00">
                 Published: Thu 18 January 2018
@@ -33,7 +96,7 @@
         </address>
 <p>In <a href="https://bootsha.net/category/tip-tricks.html">Tip & Tricks</a>.</p>
 
-</footer><!-- /.post-info --><h2>egrep Regex</h2>
+</footer><!-- /.post-info -->                <h2>egrep Regex</h2>
 <div class="highlight"><pre><span></span><span class="s1">&#39;([0-9a-f]{2}:){5}[0-9a-f]{2}&#39;</span>
 </pre></div>
 
@@ -43,12 +106,10 @@
    <span class="nb">echo</span> -e <span class="nv">$i</span> 
    virsh domiflist <span class="nv">$i</span>
 <span class="k">done</span> <span class="p">|</span> egrep <span class="s1">&#39;([0-9a-f]{2}:){5}[0-9a-f]{2}&#39;</span> <span class="p">|</span> awk <span class="s1">&#39;{print $NF}&#39;</span>
-</pre></div>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+</pre></div>
+                <a class="readmore" href="https://bootsha.net/egrep-regex-for-filtering-mac.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
