@@ -22,7 +22,65 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="https://bootsha.net/a-simple-bash-script-bot-to-send-status-message-to-telegram.html">A simple bash script bot to send status message to telegram.</a></h1>
+                    <h1 class="entry-title"><a href="https://bootsha.net/mount-ceph-block-disk-of-a-server-instance.html">Mount Ceph block disk of a server instance.</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2018-02-07T14:26:00+04:00">
+                Published: Wed 07 February 2018
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="https://bootsha.net/author/ms.html">MS</a>
+        </address>
+<p>In <a href="https://bootsha.net/category/tip-tricks.html">Tip & Tricks</a>.</p>
+
+</footer><!-- /.post-info --><h3>Get the block device from vm</h3>
+<div class="highlight"><pre><span></span>root@overcloud-compute-01:~# virsh domblklist instance-00000001
+Target     Source
+------------------------------------------------
+vda        compute/f0984ae9-f9c9-439b-80b9-f1c6201c914c_disk
+</pre></div>
+
+
+<p>Shutdown the instance from OSP </p>
+<h3>Map the disk using rbd command</h3>
+<div class="highlight"><pre><span></span>root@overcloud-compute-01:~# rbd map compute/f0984ae9-f9c9-439b-80b9-f1c6201c914c_disk --name client.admin
+</pre></div>
+
+
+<h3>Mount the disk</h3>
+<div class="highlight"><pre><span></span>root@overcloud-compute-01:~# mount /dev/rbd/compute/f0984ae9-f9c9-439b-80b9-f1c6201c914c_disk-part1 /mnt
+</pre></div>
+
+
+<p>Do the changes you want.</p>
+<h3>Unmount the disk</h3>
+<div class="highlight"><pre><span></span>root@overcloud-compute-01:~# umount /mnt
+</pre></div>
+
+
+<h3>List rbdmaps</h3>
+<div class="highlight"><pre><span></span>root@overcloud-compute-01:~# rbd showmapped
+id pool    image                                     snap device
+1  compute f0984ae9-f9c9-439b-80b9-f1c6201c914c_disk -    /dev/rbd1
+</pre></div>
+
+
+<h3>Unmap the disk</h3>
+<div class="highlight"><pre><span></span>root@overcloud-compute-01:~# rbd unmap /dev/rbd1
+</pre></div>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://bootsha.net/a-simple-bash-script-bot-to-send-status-message-to-telegram.html" rel="bookmark"
+                           title="Permalink to A simple bash script bot to send status message to telegram.">A simple bash script bot to send status message to telegram.</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2018-01-19T21:31:00+04:00">
                 Published: Fri 19 January 2018
@@ -33,7 +91,7 @@
         </address>
 <p>In <a href="https://bootsha.net/category/tip-tricks.html">Tip & Tricks</a>.</p>
 
-</footer><!-- /.post-info --><h2>The telegram bot script</h2>
+</footer><!-- /.post-info -->                <h2>The telegram bot script</h2>
 <p>Here is a simple telegram bot script I have used to send out OpenStack deployment status message to my telegram. </p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -60,61 +118,10 @@
 23
 24
 25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
-
-<span class="nv">token</span><span class="o">=</span><span class="s2">&quot;bot[telegram-bot-api-token]&quot;</span>
-<span class="nv">chat_id</span><span class="o">=</span> <span class="c1"># Send a chat to bot from telegram and hit https://api.telegram.org/bot[telegram-bot-api-token]/getUpdates to see chat_id</span>
-
-<span class="k">if</span> <span class="o">[</span> -f ~/.bot-stat<span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-    <span class="nb">source</span> ~/.bot-stat
-<span class="k">else</span>
-  <span class="nv">lstatus</span><span class="o">=</span><span class="s2">&quot;OK&quot;</span>
-  <span class="nv">sdate</span><span class="o">=</span><span class="k">$(</span>date +%s<span class="k">)</span>
-<span class="k">fi</span>
-
-send_message<span class="o">(){</span>
-    <span class="nv">tmpfile</span><span class="o">=</span><span class="k">$(</span>mktemp /tmp/telebot.XXXXXXX<span class="k">)</span>
-    <span class="nv">mstatus</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="nv">$status</span><span class="p">|</span>sed -e <span class="s1">&#39;s/_/ /g&#39;</span><span class="k">)</span>
-    cat &gt; <span class="nv">$tmpfile</span> <span class="s">&lt;&lt;EOF</span>
-<span class="s">{&quot;chat_id&quot;:&quot;$chat_id&quot;, &quot;parse_mode&quot;:&quot;markdown&quot;, &quot;text&quot;:&quot;*Deployment*\nStatus: *$mstatus*\nTime: $date \nDuration: $duration&quot;}</span>
-<span class="s">EOF</span>
-    curl -k --header <span class="s1">&#39;Content-Type: application/json&#39;</span> <span class="se">\</span>
-        --data-binary @<span class="si">${</span><span class="nv">tmpfile</span><span class="si">}</span> <span class="se">\</span>
-        --request POST https://api.telegram.org/<span class="nv">$token</span>/sendMessage
-    rm -f <span class="nv">$tmpfile</span>
-<span class="o">}</span>
-
-<span class="k">while</span> : <span class="p">;</span> <span class="k">do</span>
-    <span class="nv">status</span><span class="o">=</span><span class="k">$(</span><span class="nb">source</span> ~/stackrc <span class="o">&amp;&amp;</span> openstack stack list -c <span class="s2">&quot;Stack Status&quot;</span> -f value<span class="k">)</span>
-    <span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$status</span><span class="s2">&quot;</span> !<span class="o">=</span> <span class="s2">&quot;</span><span class="nv">$lstatus</span><span class="s2">&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-       <span class="nv">cdate</span><span class="o">=</span><span class="k">$(</span>date +%s<span class="k">)</span>
-       <span class="nv">date</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>date +%D-%H:%M:%S<span class="k">)</span><span class="s2">&quot;</span>
-       <span class="nv">duration</span><span class="o">=</span><span class="k">$((</span><span class="nv">$cdate</span><span class="o">-</span><span class="nv">$sdate</span><span class="k">))</span>
-       send_message
-       <span class="nv">lstatus</span><span class="o">=</span><span class="nv">$status</span>
-       <span class="nv">sdate</span><span class="o">=</span><span class="nv">$cdate</span>
-       <span class="nb">echo</span> -e <span class="s2">&quot;lstatus=</span><span class="nv">$status</span><span class="s2">\nsdate=</span><span class="nv">$cdate</span><span class="s2">&quot;</span> &gt; ~/.bot-stat
-    <span class="k">fi</span>
-    sleep <span class="m">5</span>
-<span class="k">done</span>
-</pre></div>
-</td></tr></table>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+26 …</pre></div></td></tr></table>
+                <a class="readmore" href="https://bootsha.net/a-simple-bash-script-bot-to-send-status-message-to-telegram.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>

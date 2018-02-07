@@ -1,5 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Bootsha - Tip &amp; Tricks</title><link href="https://bootsha.net/" rel="alternate"></link><link href="https://bootsha.net/feeds/tip-tricks.atom.xml" rel="self"></link><id>https://bootsha.net/</id><updated>2018-01-19T21:31:00+04:00</updated><entry><title>A simple bash script bot to send status message to telegram.</title><link href="https://bootsha.net/a-simple-bash-script-bot-to-send-status-message-to-telegram.html" rel="alternate"></link><published>2018-01-19T21:31:00+04:00</published><updated>2018-01-19T21:31:00+04:00</updated><author><name>MS</name></author><id>tag:bootsha.net,2018-01-19:/a-simple-bash-script-bot-to-send-status-message-to-telegram.html</id><summary type="html">&lt;h2&gt;The telegram bot script&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Bootsha - Tip &amp; Tricks</title><link href="https://bootsha.net/" rel="alternate"></link><link href="https://bootsha.net/feeds/tip-tricks.atom.xml" rel="self"></link><id>https://bootsha.net/</id><updated>2018-02-07T14:26:00+04:00</updated><entry><title>Mount Ceph block disk of a server instance.</title><link href="https://bootsha.net/mount-ceph-block-disk-of-a-server-instance.html" rel="alternate"></link><published>2018-02-07T14:26:00+04:00</published><updated>2018-02-07T14:26:00+04:00</updated><author><name>MS</name></author><id>tag:bootsha.net,2018-02-07:/mount-ceph-block-disk-of-a-server-instance.html</id><summary type="html">&lt;h3&gt;Get the block device from vm&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;root@overcloud-compute-01:~# virsh domblklist instance-00000001
+Target     Source
+------------------------------------------------
+vda        compute/f0984ae9-f9c9-439b-80b9-f1c6201c914c_disk
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Shutdown the instance from OSP &lt;/p&gt;
+&lt;h3&gt;Map the disk using rbd command&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;root@overcloud-compute-01:~# rbd map compute/f0984ae9-f9c9-439b-80b9-f1c6201c914c_disk --name client.admin
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Mount the disk&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;root@overcloud-compute-01:~# mount /dev/rbd/compute/f0984ae9-f9c9-439b-80b9-f1c6201c914c_disk-part1 /mnt
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Do the changes …&lt;/p&gt;</summary><content type="html">&lt;h3&gt;Get the block device from vm&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;root@overcloud-compute-01:~# virsh domblklist instance-00000001
+Target     Source
+------------------------------------------------
+vda        compute/f0984ae9-f9c9-439b-80b9-f1c6201c914c_disk
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Shutdown the instance from OSP &lt;/p&gt;
+&lt;h3&gt;Map the disk using rbd command&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;root@overcloud-compute-01:~# rbd map compute/f0984ae9-f9c9-439b-80b9-f1c6201c914c_disk --name client.admin
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Mount the disk&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;root@overcloud-compute-01:~# mount /dev/rbd/compute/f0984ae9-f9c9-439b-80b9-f1c6201c914c_disk-part1 /mnt
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Do the changes you want.&lt;/p&gt;
+&lt;h3&gt;Unmount the disk&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;root@overcloud-compute-01:~# umount /mnt
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;List rbdmaps&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;root@overcloud-compute-01:~# rbd showmapped
+id pool    image                                     snap device
+1  compute f0984ae9-f9c9-439b-80b9-f1c6201c914c_disk -    /dev/rbd1
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Unmap the disk&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;root@overcloud-compute-01:~# rbd unmap /dev/rbd1
+&lt;/pre&gt;&lt;/div&gt;</content></entry><entry><title>A simple bash script bot to send status message to telegram.</title><link href="https://bootsha.net/a-simple-bash-script-bot-to-send-status-message-to-telegram.html" rel="alternate"></link><published>2018-01-19T21:31:00+04:00</published><updated>2018-01-19T21:31:00+04:00</updated><author><name>MS</name></author><id>tag:bootsha.net,2018-01-19:/a-simple-bash-script-bot-to-send-status-message-to-telegram.html</id><summary type="html">&lt;h2&gt;The telegram bot script&lt;/h2&gt;
 &lt;p&gt;Here is a simple telegram bot script I have used to send out OpenStack deployment status message to my telegram. &lt;/p&gt;
 &lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
  2

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
         <meta charset="utf-8" />
-        <title>Bootsha</title>
+        <title>Mount Ceph block disk of a server instance.</title>
         <link rel="stylesheet" href="https://bootsha.net/theme/css/main.css" />
         <link href="https://bootsha.net/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Bootsha Atom Feed" />
 
@@ -16,26 +16,66 @@
                 <h1><a href="https://bootsha.net/">Bootsha </a></h1>
                 <nav><ul>
                     <li><a href="https://bootsha.net/pages/about-me.html">About Me</a></li>
-                    <li><a href="https://bootsha.net/category/tip-tricks.html">Tip & Tricks</a></li>
+                    <li class="active"><a href="https://bootsha.net/category/tip-tricks.html">Tip & Tricks</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 <section id="content" class="body">
-<h1>Archives for Bootsha</h1>
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://bootsha.net/mount-ceph-block-disk-of-a-server-instance.html" rel="bookmark"
+           title="Permalink to Mount Ceph block disk of a server instance.">Mount Ceph block disk of a server instance.</a></h1>
+    </header>
 
-<dl>
-    <dt>Wed 07 February 2018</dt>
-    <dd><a href="https://bootsha.net/mount-ceph-block-disk-of-a-server-instance.html">Mount Ceph block disk of a server instance.</a></dd>
-    <dt>Fri 19 January 2018</dt>
-    <dd><a href="https://bootsha.net/a-simple-bash-script-bot-to-send-status-message-to-telegram.html">A simple bash script bot to send status message to telegram.</a></dd>
-    <dt>Thu 18 January 2018</dt>
-    <dd><a href="https://bootsha.net/egrep-regex-for-filtering-mac.html">egrep Regex for filtering mac</a></dd>
-    <dt>Thu 18 January 2018</dt>
-    <dd><a href="https://bootsha.net/usefull-utility-to-control-bandwidth.html">Usefull utility to Control bandwidth</a></dd>
-    <dt>Wed 17 January 2018</dt>
-    <dd><a href="https://bootsha.net/recover-from-pacemaker-resource-management-disabled.html">Recover from Pacemaker resource management disabled .</a></dd>
-    <dt>Tue 16 January 2018</dt>
-    <dd><a href="https://bootsha.net/how-to-download-images-from-openstack-glance.html">How to download images from OpenStack Glance.</a></dd>
-</dl>
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2018-02-07T14:26:00+04:00">
+                Published: Wed 07 February 2018
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="https://bootsha.net/author/ms.html">MS</a>
+        </address>
+<p>In <a href="https://bootsha.net/category/tip-tricks.html">Tip & Tricks</a>.</p>
+
+</footer><!-- /.post-info -->      <h3>Get the block device from vm</h3>
+<div class="highlight"><pre><span></span>root@overcloud-compute-01:~# virsh domblklist instance-00000001
+Target     Source
+------------------------------------------------
+vda        compute/f0984ae9-f9c9-439b-80b9-f1c6201c914c_disk
+</pre></div>
+
+
+<p>Shutdown the instance from OSP </p>
+<h3>Map the disk using rbd command</h3>
+<div class="highlight"><pre><span></span>root@overcloud-compute-01:~# rbd map compute/f0984ae9-f9c9-439b-80b9-f1c6201c914c_disk --name client.admin
+</pre></div>
+
+
+<h3>Mount the disk</h3>
+<div class="highlight"><pre><span></span>root@overcloud-compute-01:~# mount /dev/rbd/compute/f0984ae9-f9c9-439b-80b9-f1c6201c914c_disk-part1 /mnt
+</pre></div>
+
+
+<p>Do the changes you want.</p>
+<h3>Unmount the disk</h3>
+<div class="highlight"><pre><span></span>root@overcloud-compute-01:~# umount /mnt
+</pre></div>
+
+
+<h3>List rbdmaps</h3>
+<div class="highlight"><pre><span></span>root@overcloud-compute-01:~# rbd showmapped
+id pool    image                                     snap device
+1  compute f0984ae9-f9c9-439b-80b9-f1c6201c914c_disk -    /dev/rbd1
+</pre></div>
+
+
+<h3>Unmap the disk</h3>
+<div class="highlight"><pre><span></span>root@overcloud-compute-01:~# rbd unmap /dev/rbd1
+</pre></div>
+    </div><!-- /.entry-content -->
+
+  </article>
 </section>
         <section id="extras" class="body">
                 <div class="blogroll">
